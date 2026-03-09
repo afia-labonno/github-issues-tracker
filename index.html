@@ -36,12 +36,12 @@
             <fieldset class="fieldset bg-white rounded-box w-full p-4 mx-auto">
 
                 <label class="label text-black font-semibold">Username</label>
-                <input type="text" class="input w-full" placeholder="Enter Username" />
+                <input id="username" type="text" class="input w-full" placeholder="Enter Username" />
 
                 <label class="label text-black font-semibold">Password</label>
-                <input type="password" class="input w-full" placeholder="Enter Password" />
+                <input id="password" type="password" class="input w-full" placeholder="Enter Password" />
 
-                <button id="sign-in-btn" class="btn btn-primary mt-4">Sign in</button>
+                <button onclick="login()" id="login-btn" class="btn btn-primary mt-4">Sign in</button>
             </fieldset>
         </div>
 
@@ -59,6 +59,8 @@
 
     </section>
 
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
