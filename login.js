@@ -4,7 +4,7 @@ const login = () => {
     const password = document.getElementById("password").value;
 
     if (username === "admin" && password === "admin123") {
-        alert("Login Successfull");
+        // alert("Login Successfull");
         window.location.href = "dashboard.html" ;
     } else {
         alert("Invalid Credential");
