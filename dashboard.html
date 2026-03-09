@@ -41,8 +41,86 @@
             </div>
         </div>
 
-    </nav> 
+    </nav>
     <hr class="text-base-300">
+
+    <!-- tabs secttion-->
+    <section class="w-10/12 mx-auto space-y-4 mt-15 bg-white shadow-lg p-4 rounded-md border border-base-300 mb-1">
+        <div class="flex gap-2">
+            <button id="all-tab-btn" class="btn btn-primary text-white px-5 py-2 rounded-md text-sm">All</button>
+            <button id="open-tab-btn" class="btn text-gray-500 px-5 py-2 rounded-md text-sm">Open</button>
+            <button id="closed-tab-btn" class="btn text-gray-500 px-5 py-2 rounded-md text-sm">Closed</button>
+        </div>
+    </section>
+
+    <!-- count section -->
+    <section
+        class="w-10/12 mx-auto space-y-4 mt-4 bg-white shadow-lg p-4 rounded-md border border-base-300 flex justify-between">
+
+        <!-- left -->
+        <div>
+            <div class="flex gap-1.5">
+                <div>
+                    <img src="./assets/Aperture.png" alt="">
+                </div>
+                <div>
+                    <h2 id="issue-count" class="font-semibold text-xl">50 Issues</h2>
+                    <p class="text-gray-500 text-sm">Track and manage your project issues</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- right -->
+        <div class="flex gap-2">
+            <div class="flex gap-1 items-center">
+                <span id="open-status" class="status bg-green-600 "></span>
+                <p class="font-semibold text-gray-700">Open</p>
+            </div>
+            <div class="flex gap-1 items-center">
+                <span id="closed-status" class="status bg-purple-800 "></span>
+                <p class="font-semibold text-gray-700">Closed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- card section -->
+    <section class="w-10/12 mx-auto space-y-4 mt-4 bg-white shadow-lg p-4 rounded-md border border-base-300">
+        <!-- for open issues -->
+        <div class="grid grid-cols-4">
+            <div class="card bg-base-100 border border-base-300 border-t-4 border-t-green-500 shadow-md">
+                <div class="card-body">
+                    <div class="flex justify-between">
+                        <span id="card-status" class="status bg-green-600"></span>
+                        <div id="priority" class="badge badge-soft badge-error">High</div>
+                    </div>
+
+                    <div>
+                        <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
+                        <p class="line-clamp-2 text-gray-500 text-sm">The navigation menu doesn't collapse properly on mobile devices...</p>
+                    </div>
+                    <div>
+                        <div class="badge badge-outline badge-error bg-red-50 rounded-full">BUG</div>
+                        <div class="badge badge-outline badge-warning bg-amber-50 rounded-full">HELP WANTED</div>
+                    </div>
+                </div>
+
+                <hr class="text-base-300">
+                <div class="bg-white text-sm text-gray-500 p-4">
+                    <p>#1 by john_doe</p>
+                    <p>1/15/2024</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- for closed issues -->
+        <!-- <div class="card bg-base-100 border border-base-300 border-t-4 border-t-purple-600 shadow-md">
+            <div class="card-body">
+                <h2 class="card-title">Closed Issue</h2>
+                <p>Issue resolved successfully.</p>
+            </div>
+        </div> -->
+    </section>
 
 </body>
 
