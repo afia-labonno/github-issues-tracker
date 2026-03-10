@@ -47,7 +47,8 @@
     <!-- tabs secttion-->
     <section class="w-10/12 mx-auto space-y-4 mt-15 bg-white shadow-lg p-4 rounded-md border border-base-300 mb-1">
         <div class="flex gap-2">
-            <button id="all-tab-btn" class="btn btn-primary text-white px-5 py-2 rounded-md text-sm">All</button>
+            <button onclick="loadIssues('all-tab-btn')" id="all-tab-btn"
+                class="btn btn-primary text-white px-5 py-2 rounded-md text-sm">All</button>
             <button id="open-tab-btn" class="btn text-gray-500 px-5 py-2 rounded-md text-sm">Open</button>
             <button id="closed-tab-btn" class="btn text-gray-500 px-5 py-2 rounded-md text-sm">Closed</button>
         </div>
@@ -86,31 +87,10 @@
     <!-- card section -->
     <section class="w-10/12 mx-auto space-y-4 mt-4 bg-white shadow-lg p-4 rounded-md border border-base-300">
         <!-- for open issues -->
-        <div class="grid grid-cols-4">
-            <div class="card bg-base-100 border border-base-300 border-t-4 border-t-green-500 shadow-md">
-                <div class="card-body">
-                    <div class="flex justify-between">
-                        <span id="issue-status" class="status bg-green-600"></span>
-                        <div id="priority" class="badge badge-soft badge-error">High</div>
-                    </div>
-
-                    <div>
-                        <h2 id="title" class="font-semibold">Fix navigation menu on mobile devices</h2>
-                        <p id="decription" class="line-clamp-2 text-gray-500 text-sm">The navigation menu doesn't collapse properly on mobile devices...</p>
-                    </div>
-                    <div>
-                        <div class="badge badge-outline badge-error bg-red-50 rounded-full">BUG</div>
-                        <div class="badge badge-outline badge-warning bg-amber-50 rounded-full">HELP WANTED</div>
-                    </div>
-                </div>
-
-                <hr class="text-base-300">
-                <div class="bg-white text-sm text-gray-500 p-4">
-                    <p id="author">#1 by john_doe</p>
-                    <p id="createdAt">1/15/2024</p>
-                </div>
-            </div>
+        <div id="cardContainer">
+            <!-- card will be added dynamically -->
         </div>
+
 
 
         <!-- for closed issues -->
@@ -122,6 +102,8 @@
         </div> -->
     </section>
 
+
+    <script src="./dashboard.js"></script>
 </body>
 
 </html>
