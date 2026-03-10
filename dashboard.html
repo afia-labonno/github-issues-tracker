@@ -47,8 +47,7 @@
     <!-- tabs secttion-->
     <section class="w-10/12 mx-auto space-y-4 mt-15 bg-white shadow-lg p-4 rounded-md border border-base-300 mb-1">
         <div class="flex gap-2">
-            <button onclick="loadIssues('all-tab-btn')" id="all-tab-btn"
-                class="btn btn-primary text-white px-5 py-2 rounded-md text-sm">All</button>
+            <button onclick="loadIssues('all-tab-btn')" id="all-tab-btn"class="btn btn-primary text-white px-5 py-2 rounded-md text-sm">All</button>
             <button id="open-tab-btn" class="btn text-gray-500 px-5 py-2 rounded-md text-sm">Open</button>
             <button id="closed-tab-btn" class="btn text-gray-500 px-5 py-2 rounded-md text-sm">Closed</button>
         </div>
@@ -65,7 +64,7 @@
                     <img src="./assets/Aperture.png" alt="">
                 </div>
                 <div>
-                    <h2 id="issue-count" class="font-semibold text-xl">50 Issues</h2>
+                    <h2 id="total-issue" class="font-semibold text-xl">0</h2>
                     <p class="text-gray-500 text-sm">Track and manage your project issues</p>
                 </div>
             </div>
@@ -84,23 +83,21 @@
         </div>
     </section>
 
+    <!-- loading spinner -->
+     <section id="loadingSpinner" class=" flex justify-center items-center py-10 hidden ">
+        <span class="loading loading-dots loading-xl"></span>
+     </section>
+
     <!-- card section -->
     <section class="w-10/12 mx-auto space-y-4 mt-4 bg-white shadow-lg p-4 rounded-md border border-base-300">
         <!-- for open issues -->
         <div id="cardContainer">
             <!-- card will be added dynamically -->
         </div>
-
-
-
-        <!-- for closed issues -->
-        <!-- <div class="card bg-base-100 border border-base-300 border-t-4 border-t-purple-600 shadow-md">
-            <div class="card-body">
-                <h2 class="card-title">Closed Issue</h2>
-                <p>Issue resolved successfully.</p>
-            </div>
-        </div> -->
     </section>
+
+    <!-- filtered Section -->
+    <section id="filtered-section" class="hidden"></section>
 
 
     <script src="./dashboard.js"></script>

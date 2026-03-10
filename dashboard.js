@@ -1,24 +1,85 @@
 
-const allTabBtn = document.getElementById("all-tab-btn");
+let openIssueList = [];
+let closedIssueList = [];
+let currentTab = "all-tab-btn";
 
+
+const loadingSpinner = document.getElementById("loadingSpinner");
+
+// tab-btn
+const allIssuesTab = document.getElementById("all-tab-btn");
+const openIssuesTab = document.getElementById("open-tab-btn");
+const closedIssuesTab = document.getElementById("closed-tab-btn");
+// card-container
+const cardContainer = document.getElementById("cardContainer");
+// issues-count
+let issuesCount = document.getElementById("total-issue");
+
+
+const showLoading = ()=>{
+   
+        loadingSpinner.classList.remove("hidden");
+        cardContainer.innerHTML = "";
+}
+
+const hideLoading = ()=>{
+   
+        loadingSpinner.classList.add("hidden");
+       
+}
+    
 
 const loadIssues = async () => {
+    showLoading();
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const response = await fetch(url);
     const data = await response.json();
     const issues = data.data ;
-    displayIssues(issues);
 
+    //filter the issues
+    openIssueList = issues.filter(issue => issue.status === "open");
+    closedIssueList = issues.filter(issue => issue.status === "closed");
+
+    hideLoading();
+    renderIssues(currentTab);
+    
 }
 
-const displayIssues = (issues) => {
-    const cardContainer = document.getElementById("cardContainer");
+const renderIssues = (tabId) => {
+    
     cardContainer.innerHTML = "";
 
+    let displayIssues = [];
+    if(tabId === "all-tab-btn"){
+        displayIssues = [...openIssueList, ...closedIssueList] ;
+    } 
+    else if(tabId === "open-tab-btn"){
+        displayIssues = openIssueList ;
+    }
+    else if(tabId === "closed-tab-btn"){
+        displayIssues = closedIssueList ;
+    }
+
+
+    // active buttton
+    let tabBtn = [allIssuesTab, openIssuesTab, closedIssuesTab];
+
+    tabBtn.forEach(btn =>{
+        btn.classList.remove("btn-primary", "text-white");
+        btn.classList.add("text-gray-500");
+    });
+    document.getElementById(tabId).classList.add("btn-primary", "text-white");
+    currentTab = tabId ;
+
+    //count the issues
+    issuesCount.innerText = `${displayIssues.length} Issues` ;
+
+    // grid container
     const grid = document.createElement("div");
     grid.classList.add("grid", "grid-cols-4", "gap-4");
 
-    issues.forEach(issue => {
+    //cards
+    displayIssues.forEach(issue => {
 
         const div = document.createElement('div');
         div.classList.add("card", "bg-base-100", "border", "border-base-300", "border-t-4", "shadow-md", "p-4" , "flex" , "flex-col", "h-full");
@@ -37,7 +98,7 @@ const displayIssues = (issues) => {
         div.innerHTML = `
        
                         <div class="flex justify-between">
-                            <span class="status w-2 h-2 rounded-full ${issue.status.toLowerCase() === "open" ? "bg-green-600" : "bg-purple-600"}"></span>
+                            <span class="status w-2 h-2 rounded-full ${issue.status === "open" ? "bg-green-600" : "bg-purple-600"}"></span>
                             <div class="badge badge-soft">${issue.priority}</div> 
                         </div>
 
@@ -105,5 +166,53 @@ const displayIssues = (issues) => {
     });
     cardContainer.appendChild(grid);
 };
+
+// const totalIssuesCount = (issues) =>{
+//     issuesCount.innerText = `${issues.length} Issues` ;
+// }
+
+// const toggle = (id) =>{
+    
+//     allIssuesTab.classList.remove("btn-primary", "text-white");
+//     openIssuesTab.classList.remove("btn-primary", "text-white");
+//     closedIssuesTab.classList.remove("btn-primary", "text-white");
+
+//     allIssuesTab.classList.add("text-gray-500");
+//     openIssuesTab.classList.add("text-gray-500");
+//     closedIssuesTab.classList.add("text-gray-500");
+
+//     const selected = document.getElementById(id);
+//     currentTab = id ; 
+
+//     selected.classList.remove("text-gray-500");
+//     selected.classList.add("btn-primary", "text-white");
+
+//     if(id === "all-tab-btn"){
+//         cardContainer.classList.remove("hidden");
+//         filteredSection.classList.add("hidden");
+//         const allIssues = [...openIssueList, ...closedIssueList];
+//         displayIssues([...openIssueList,...closedIssueList],cardContainer)
+//         totalIssuesCount(allIssues);
+//     }
+//     else if(id === "open-tab-btn"){
+//         cardContainer.classList.add("hidden");
+//         filteredSection.classList.remove("hidden");
+//         displayIssues(openIssueList,filteredSection);
+//         totalIssuesCount(openIssueList);
+//     }
+//     else if(id === "closed-tab-btn"){
+//         cardContainer.classList.add("hidden");
+//         filteredSection.classList.remove("hidden");
+//         displayIssues(closedIssueList,filteredSection);
+//         totalIssuesCount(closedIssueList);
+        
+//     }
+// }
+
+allIssuesTab.addEventListener("click", () => renderIssues("all-tab-btn"));
+openIssuesTab.addEventListener("click", () => renderIssues("open-tab-btn"));
+closedIssuesTab.addEventListener("click", () => renderIssues("closed-tab-btn"));
+
+
 loadIssues();
 
